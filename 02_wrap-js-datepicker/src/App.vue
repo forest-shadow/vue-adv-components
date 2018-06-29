@@ -4,7 +4,10 @@
       <div class="card">
         <label class="block">
           <span class="form-label mb-2">Select a date</span>
-          <input type="text" id="datepicker" class="form-input" placeholder="YYYY-MM-DD">
+          <DatePicker v-model="date"
+                      format="MMM D YYYY"
+                      :options="{ firstDay: 1 }"
+          />
         </label>
       </div>
     </div>
@@ -12,17 +15,15 @@
 </template>
 
 <script>
-import Pikaday from 'pikaday'
-import "pikaday/css/pikaday.css"
+import DatePicker from './components/DatePicker'
 
 export default {
   name: 'app',
-  components: {},
-  mounted() {
-    const picker = new Pikaday({
-      field: document.getElementById('datepicker'),
-      format: 'YYYY-MM-DD'
-    })
+  components: { DatePicker },
+  data() {
+    return {
+      date: 'Apr 12 2018'
+    }
   }
 }
 </script>
