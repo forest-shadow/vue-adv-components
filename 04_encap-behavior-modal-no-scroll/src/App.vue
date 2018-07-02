@@ -53,4 +53,12 @@
   }
 </script>
 
-<style src="./assets/css/app.css"></style>
+<style>
+@import './assets/css/app.css';
+
+.modal-open {
+  min-height: 100vh;
+  overflow: hidden;
+}
+</style>
+

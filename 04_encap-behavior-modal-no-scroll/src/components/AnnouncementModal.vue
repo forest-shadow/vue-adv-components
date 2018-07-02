@@ -22,7 +22,22 @@
 <script>
 export default {
   name: "AnnouncementModal",
-  props: ['show'],
+  props: {
+    show: { required: true },
+    preventBackgroundScrolling: { default: true }
+  },
+  watch: {
+    show: {
+      immediate: true,
+      handler: function(show) {
+        if(show) {
+          this.preventBackgroundScrolling && document.body.style.setProperty('overflow', 'hidden')
+        } else {
+          this.preventBackgroundScrolling && document.body.style.removeProperty('overflow')
+        }
+      }
+    }
+  },
   created() {
     const escapeHandler = (e) => {
       if (e.key === 'Escape' && this.show) {
