@@ -1,22 +1,20 @@
 <template>
-  <div class="delete-account-button">
-    <button type="button"
-            class="text-red-dark hover:underline"
-            @click="confirmDeleteModalOpen = true"
-    >
-      Delete Account
-    </button>
+  <button
+      class="delete-account-button"
+      type="button"
+      @click="modalOpen = true">
+    <slot></slot>
 
     <portal to="modals"
-            v-if="confirmDeleteModalOpen"
+            v-if="modalOpen"
     >
       <ConfirmDeleteModal
-          :show="confirmDeleteModalOpen"
+          :show="modalOpen"
           :account-id="accountId"
-          @close="confirmDeleteModalOpen = false"
+          @close="modalOpen = false"
       />
     </portal>
-  </div>
+  </button>
 </template>
 
 <script>
@@ -30,12 +28,8 @@ export default {
   props: ['accountId'],
   data() {
     return {
-      confirmDeleteModalOpen: false
+      modalOpen: false
     }
   }
 }
 </script>
-
-<style scoped>
-
-</style>
