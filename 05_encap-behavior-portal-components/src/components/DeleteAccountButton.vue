@@ -7,7 +7,9 @@
       Delete Account
     </button>
 
-    <portal to="modals">
+    <portal to="modals"
+            v-if="confirmDeleteModalOpen"
+    >
       <ConfirmDeleteModal
           :show="confirmDeleteModalOpen"
           :account-id="accountId"
