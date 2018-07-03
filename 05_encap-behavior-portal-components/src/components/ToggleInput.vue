@@ -3,7 +3,7 @@
         :aria-checked="toggled.toString()"
         @click="toggle"
         @keydown.space.prevent="toggle"
-  >{{toggled}}</span>
+  ></span>
 </template>
 
 <script>
