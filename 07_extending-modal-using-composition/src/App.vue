@@ -8,14 +8,10 @@
       />
     </div>
 
-    <portal to="modals"
-            v-if="showAnnouncement"
-    >
-      <AnnouncementModal
-        :show="showAnnouncement"
-        @close="showAnnouncement = false"
-      />
-    </portal>
+    <AnnouncementModal
+      :show="showAnnouncement"
+      @close="showAnnouncement = false"
+    />
 
     <portal-target name="modals"></portal-target>
   </div>

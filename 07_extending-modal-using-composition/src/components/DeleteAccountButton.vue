@@ -5,15 +5,11 @@
       @click="modalOpen = true">
     <slot></slot>
 
-    <portal to="modals"
-            v-if="modalOpen"
-    >
-      <ConfirmDeleteModal
-          :show="modalOpen"
-          :account-id="accountId"
-          @close="modalOpen = false"
-      />
-    </portal>
+    <ConfirmDeleteModal
+      :show="modalOpen"
+      :account-id="accountId"
+      @close="modalOpen = false"
+    />
   </button>
 </template>
 

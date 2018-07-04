@@ -1,18 +1,51 @@
 <template>
-  <div>
-  </div>
+  <portal to="modals"
+          v-if="show"
+  >
+    <div class="modal-backdrop">
+      <div class="modal">
+        <slot></slot>
+      </div>
+    </div>
+  </portal>
 </template>
 
 <script>
-  export default {
-    name: 'ModalDialog',
-    props: [],
-    data() {
-      return {}
+export default {
+  name: 'ModalDialog',
+  props: ['show'],
+  data() {
+    return {}
+  },
+  watch: {
+    show: {
+      immediate: true,
+      handler: show => {
+        if (show) {
+          document.body.style.setProperty("overflow", "hidden")
+        } else {
+          document.body.style.removeProperty("overflow")
+        }
+      }
+    }
+  },
+  methods: {
+    cancel() {
+      this.$emit("close")
     },
-    methods: {}
-  }
-</script>
+  },
+  created() {
+    const listener = document.addEventListener("keydown", e => {
+      if (this.show && e.keyCode === 27) {
+        this.cancel()
+      }
+    })
 
-<style>
-</style>
+    this.$once("hook:beforeDestroy", () => {
+      // eslint-disable-next-line
+      console.log("removing listener")
+      document.removeEventListener("keydown", listener)
+    })
+  }
+}
+</script>
