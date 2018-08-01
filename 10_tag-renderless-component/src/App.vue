@@ -1,6 +1,23 @@
 <template>
   <div id="app" class="min-h-screen bg-grey-darker p-8">
     <div class="card max-w-sm mx-auto mt-8">
+      <label class="form-label mb-2">Renderless Stacked Layout</label>
+
+      <div class="stacked-tag-input-form">
+        <input type="text" class="form-input" placeholder="Add tag...">
+        <button class="btn btn-indigo">Add Tag</button>
+      </div>
+      <ul class="stacked-tag-list">
+        <li>
+          <span>sample-tag</span>
+          <button class="stacked-tag-link" type="button">
+            Remove
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card max-w-sm mx-auto mt-8">
       <label class="form-label mb-2">Renderless Tag Input</label>
       <RenderlessTagInput v-model="tags">
         <div class="tag-input" slot-scope="{ tags, removeTag, removeButtonEvents, inputProps, inputEvents }">
