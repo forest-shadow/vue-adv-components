@@ -3,18 +3,29 @@
     <div class="card max-w-sm mx-auto mt-8">
       <label class="form-label mb-2">Renderless Stacked Layout</label>
 
-      <div class="stacked-tag-input-form">
-        <input type="text" class="form-input" placeholder="Add tag...">
-        <button class="btn btn-indigo">Add Tag</button>
-      </div>
-      <ul class="stacked-tag-list">
-        <li>
-          <span>sample-tag</span>
-          <button class="stacked-tag-link" type="button">
-            Remove
-          </button>
-        </li>
-      </ul>
+      <RenderlessTagInput v-model="tags" :remove-on-backspace="false">
+        <div class="stacked-tag-input" slot-scope="{ tags, addTag, removeButtonEvents, inputProps, inputEvents }">
+          <div class="stacked-tag-input-form">
+            <input type="text" class="form-input" placeholder="Add tag..."
+                   v-bind="inputProps"
+                   v-on="inputEvents"
+            >
+            <button class="btn btn-indigo"
+                    @click="addTag"
+            >Add Tag</button>
+          </div>
+          <ul class="stacked-tag-list">
+            <li v-for="tag in tags" :key="tag">
+              <span>{{ tag }}</span>
+              <button class="stacked-tag-link" type="button"
+                      v-on="removeButtonEvents(tag)"
+              >
+                Remove
+              </button>
+            </li>
+          </ul>
+        </div>
+      </RenderlessTagInput>
     </div>
 
     <div class="card max-w-sm mx-auto mt-8">
