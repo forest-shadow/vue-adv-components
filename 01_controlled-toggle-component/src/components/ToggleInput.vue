@@ -16,7 +16,8 @@ export default {
   props: ['toggled'],
   methods: {
     toggle() {
-      this.$emit('input', !this.toggled)
+      console.warn()
+      this.$emit('toggle', !this.toggled)
     }
   }
 }
