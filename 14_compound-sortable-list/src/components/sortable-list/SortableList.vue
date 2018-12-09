@@ -17,6 +17,10 @@ function move(items, oldIndex, newIndex) {
 
 export default {
   name: 'SortableList',
+  model: {
+    prop: 'value',
+    event: 'input'
+  },
   props: {
     value: {
       required: true
